@@ -1,0 +1,75 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<title>Registration Page</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6 col-md-offset-3">
+			
+				<form th:object="${user}" method="POST" th:action="@{/save}">
+					
+					<div th:if="*{id} >= 1">
+						<h3>Update User Form</h3>
+					</div>
+					
+					<div th:if="*{id} < 1">
+						<h3>Registration Form</h3>
+					</div>
+					
+					<hr>
+					
+					<input type="hidden" id="firstName" th:field="*{id}" class="form-control"/>
+					
+					<div class="form-group">
+						<label class="control-label" for="firstName">First Name</label>
+						<input placeholder="First Name" id="firstName" th:field="*{firstName}" class="form-control"/>
+						<div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></div>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label" for="lastName">Last Name</label>
+					<input placeholder="Last Name" id="lastName" th:field="*{lastName}" class="form-control"/>
+					<div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></div>
+					</div>
+					
+					<div class="form-group">
+					<label class="control-label" for="email">Email</label>
+					<input placeholder="Email" id="email" th:field="*{email}" class="form-control"/>
+					<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
+					</div>
+					
+					<div th:if="*{id} < 1">
+						<div class="form-group">
+						<label class="control-label" for="password">Password</label>
+						<input type="password" placeholder="Password" id="password" th:field="*{password}" class="form-control"/>
+						<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></div>
+						</div>
+						
+						<div class="form-group">
+						<label class="control-label" for="role">Role</label>
+						<select id="role" th:field="*{roles}" class="form-control">
+							<option th:value="ROLE_ADMIN" th:text="Admin" />
+							<option th:value="ROLE_STUDENT" th:text="Student" />
+						</select>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">Save</button>
+						<a th:href="@{/}" class="btn btn-danger">Back</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

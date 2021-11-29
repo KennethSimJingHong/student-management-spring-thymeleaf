@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<title>Login Page</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		
+	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6 col-md-offset-3">
+				<h3>Login Form</h3>
+				<hr>
+				<form method="POST" th:action="@{/authenticateTheUser}">
+					<div class="form-group">
+						<div class="row">
+							<div class="col-xs-15">
+								<div th:if="${param.error}" class="alert alert-danger col-xs-offset-1 col-xs-10">
+									Invalid email and password.
+								</div>
+								
+								<div th:if="${param.logout}" class="alert alert-success col-xs-offset-1 col-xs-10">
+									You have been logout.
+								</div>							
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="control-label">Email</label>
+						<input id="email" name="username" placeholder="Email" class="form-control"/>
+					</div>
+					
+					<div class="form-group">
+						<label for="password" class="control-label">Password</label>
+						<input id="passowrd" name="password" placeholder="Password" type="password" class="form-control"/>
+					</div>
+					<button class="btn btn-success">Login</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
